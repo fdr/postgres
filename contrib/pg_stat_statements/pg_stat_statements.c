@@ -402,7 +402,12 @@ _PG_fini(void)
 }
 
 /*
- * Create a new, random stat session key.
+ * Set up a new statistics gathering session.
+ *
+ * A session is intended presented to the user as to determine whether a
+ * statistics reset has transpired, as otherwise programs interpreting a
+ * query_id would otherwise be exposed to non-monotonic behavior of the
+ * performance counters.
  */
 static void
 pgss_new_stat_session(pgssSharedState *state)
